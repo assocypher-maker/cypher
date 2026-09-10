@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installations — Cypher Art & Scénographie</title>
+  <meta name="description" content="Installations immersives Cypher : LVX-1, Carbon Offset, Fleurs Timides." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+  :root {
+    --violet: #ff6eb4;
+    --cyan:   #ff643c;
+    --bordure: rgba(255,110,180,0.18);
+    --texte:  rgba(255,220,235,0.70);
+  }
+  .orbe-1 { background: radial-gradient(circle, rgba(255,60,140,0.2), transparent 70%); }
+  .orbe-2 { background: radial-gradient(circle, rgba(255,90,50,0.14), transparent 70%); }
+  .orbe-3 { background: radial-gradient(circle, rgba(220,0,70,0.1), transparent 70%); }
+  .nav-logo-mot { color: #ff6eb4; }
+  .nav-logo-sous { color: rgba(255,110,180,0.4); }
+  .nav-liens a:hover, .nav-liens a.active { color: #ff6eb4; }
+  .nav-liens a::after { background: #ff6eb4; }
+  .nav-contact { color: #ff643c; border-color: rgba(255,100,60,0.3); }
+  .nav-hamburger span { background: #ff6eb4; }
+  .nav-drawer a:hover, .nav-drawer a.active { color: #ff6eb4; }
+  .hero-label-texte { color: #ff6eb4; }
+  .hero-label-trait { background: #ff6eb4; }
+  .hero-h1 .contour { -webkit-text-stroke-color: rgba(255,110,180,0.5); }
+  .hero-h1 .accent { color: #ff6eb4; }
+  .btn-principal { border-color: #ff6eb4; color: #ff6eb4; }
+  .btn-principal:hover { background: rgba(255,110,180,0.08); }
+  .carte-categorie, .carte-categorie::before { color: #ff6eb4; background: #ff6eb4; }
+  .projet-tag { color: #ff6eb4; }
+  .projet-tag::before { background: #ff6eb4; }
+  .spec-valeur .accent { color: #ff6eb4; }
+  .contact-strip { background: rgba(255,110,180,0.03); }
+  .footer-infos a:hover { color: #ff6eb4; }
+  .footer-logo { color: rgba(255,110,180,0.3); }
+  /* Photos crop */
+  .projet-entete .photo-cadre img { height: 480px; }
+  .photos-grille-2 .photo-cadre img { height: 360px; }
+  .photos-grille-3 .photo-cadre img { height: 280px; }
+  /* Titres page projets */
+  .page-h1 { font-family:'Syne',sans-serif; font-size:clamp(1.4rem,8vw,7rem); font-weight:800; text-transform:uppercase; letter-spacing:-0.02em; line-height:0.9; opacity:0; animation:up 0.8s 0.25s forwards; word-break:keep-all; hyphens:none; }
+  .page-h1 .mot-plein { display:block; color:#f0e8ff; }
+  .page-h1 .mot-contour { display:block; color:transparent; -webkit-text-stroke:1.5px rgba(255,110,180,0.5); }
+  .page-label { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; opacity:0; animation:up 0.7s 0.1s forwards; }
+  .page-label-trait { width:40px; height:1px; background:#ff6eb4; }
+  .page-label-texte { font-size:0.62rem; letter-spacing:0.45em; text-transform:uppercase; color:#ff6eb4; }
+  .proj-tab { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,220,235,0.35); padding:1.3rem 1.8rem; border-bottom:2px solid transparent; transition:color 0.3s,border-color 0.3s; display:inline-block; }
+  .proj-tab:hover, .proj-tab.actif { color:#ff6eb4; border-bottom-color:#ff6eb4; }
+  .projet-bloc { padding:5.5rem 3.5rem; border-bottom:1px solid rgba(255,110,180,0.18); position:relative; }
+  .projet-num-bg { position:absolute; top:1.5rem; right:2rem; font-family:'Syne',sans-serif; font-size:16rem; font-weight:800; color:transparent; -webkit-text-stroke:1px rgba(255,110,180,0.04); line-height:1; pointer-events:none; }
+  .projet-entete { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; margin-bottom:4rem; position:relative; z-index:1; }
+  .projet-tag { font-size:0.6rem; letter-spacing:0.38em; text-transform:uppercase; display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; }
+  .projet-tag::before { content:''; display:block; width:14px; height:1px; }
+  .projet-titre { font-family:'Syne',sans-serif; font-size:clamp(1.4rem,6vw,4.5rem); font-weight:800; text-transform:uppercase; letter-spacing:-0.02em; line-height:0.95; margin-bottom:0.4rem; word-break:keep-all; hyphens:none; }
+  .projet-titre .contour { color:transparent; -webkit-text-stroke:1.5px rgba(255,110,180,0.45); display:block; }
+  .projet-sous-titre { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,220,235,0.28); margin-top:0.5rem; }
+  .projet-desc { font-size:0.92rem; line-height:1.88; color:rgba(255,220,235,0.7); margin-bottom:1.2rem; }
+  .projet-festivals { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem; }
+  .festival-tag { font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase; padding:0.38rem 1rem; border:1px solid rgba(255,110,180,0.2); color:rgba(255,220,235,0.42); }
+  .projet-specs { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,110,180,0.18); margin-top:3rem; position:relative; z-index:1; }
+  .spec { background:#0c0006; padding:1.6rem 1.8rem; }
+  .spec-label { font-size:0.56rem; letter-spacing:0.36em; text-transform:uppercase; color:rgba(255,220,235,0.28); margin-bottom:0.5rem; }
+  .spec-valeur { font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:700; color:#f0e8ff; line-height:1.3; }
+  .hero-projets { min-height:52vh; display:flex; flex-direction:column; justify-content:flex-end; padding:0 3.5rem 4rem; border-bottom:1px solid rgba(255,110,180,0.18); position:relative; overflow:hidden; }
+  .hero-projets-contenu { position:relative; z-index:2; }
+  .projets-nav { padding:0 3.5rem; border-bottom:1px solid rgba(255,110,180,0.18); display:flex; overflow-x:auto; }
+  .contact-strip { border-color:rgba(255,110,180,0.18); }
+  .contact-titre { word-break:keep-all; hyphens:none; }
+  @media(max-width:768px){
+    .projet-entete { grid-template-columns:1fr; gap:2rem; }
+    .projet-bloc { padding:3.5rem 1.4rem; }
+    .hero-projets { padding:0 1.4rem 3rem; }
+    .projets-nav { padding:0 1.4rem; }
+    .projet-num-bg { font-size:6rem; opacity:0.03; }
+    .projet-specs { grid-template-columns:1fr 1fr; }
+    .projet-entete .photo-cadre img { height:280px; }
+  }
+  @media(max-width:480px){
+    .projet-specs { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Orbes ambiance -->
+  <div class="orbe orbe-1" aria-hidden="true"></div>
+  <div class="orbe orbe-2" aria-hidden="true"></div>
+  <div class="orbe orbe-3" aria-hidden="true"></div>
+
+  <div class="page">
+
+  <nav id="nav">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mot">Cypher</span>
+        <span class="nav-logo-sous">Art & Scénographie</span>
+      </a>
+      <ul class="nav-liens">
+        <li><a href="projets.html" class="active">Installations</a></li>
+        <li><a href="scenographie.html">Scénographie</a></li>
+        <li><a href="spectacles.html">Spectacles</a></li>
+      </ul>
+      <a href="contact.html" class="nav-contact">Contact</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="nav-drawer" id="drawer">
+      <a href="projets.html" class="active">Installations</a>
+      <a href="scenographie.html">Scénographie</a>
+      <a href="spectacles.html">Spectacles</a>
+      <a href="contact.html" class="drawer-contact">Contact</a>
+    </div>
+
+<!-- Curseur -->
+  <!-- Canvas ambiance rose -->
+  
+
+    <!-- ─── NAVIGATION ─── -->
+    
+
+    <!-- Drawer mobile -->
+    <!-- ─── HERO ─── -->
+    <div class="hero-projets">
+      <div class="hero-projets-contenu">
+        <div class="page-label">
+          <div class="page-label-trait"></div>
+          <span class="page-label-texte">Art immersif & interactif</span>
+        </div>
+        <h1 class="page-h1">
+          <span class="mot-plein">Installations</span>
+          <span class="mot-contour">immersives</span>
+        </h1>
+        <p class="page-sous-titre">
+          Des installations conçues pour transformer un lieu en expérience — mêlant robotique, intelligence artificielle, lumière UV et projection holographique.
+        </p>
+      </div>
+    </div>
+
+    <!-- ─── ONGLETS ─── -->
+    <div class="projets-nav">
+      <a href="#lvx1"  class="proj-tab actif">LVX-1</a>
+      <a href="#carbon" class="proj-tab">Carbon Offset</a>
+      <a href="#fleurs" class="proj-tab">Fleurs Timides</a>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PROJET 1 — LVX-1                          -->
+    <!-- ══════════════════════════════════════════ -->
+    <article class="projet-bloc" id="lvx1">
+      <div class="projet-num-bg">01</div>
+
+      <div class="projet-entete">
+        <!-- Texte -->
+        <div>
+          <div class="projet-meta">
+            <span class="projet-tag">Installation interactive</span>
+          </div>
+          <h2 class="projet-titre">
+            LVX
+            <span class="contour">-1</span>
+          </h2>
+          <div class="projet-sous-titre">par LB² — @lb__square</div>
+
+          <p class="projet-desc" style="margin-top:1.8rem;">
+            LVX-1 filme les spectateurs en temps réel et applique des transformations visuelles générées par intelligence artificielle. Les effets s'adaptent dynamiquement aux émotions détectées par un algorithme d'analyse des expressions faciales, offrant une expérience visuelle psychédélique, ludique et immersive.
+          </p>
+          <p class="projet-desc">
+            L'œuvre interroge la frontière entre technologie et émotion, tout en plongeant le public dans un univers où l'art et l'IA se répondent pour créer une interaction unique et évolutive.
+          </p>
+
+          <div class="projet-festivals">
+            <span class="festival-tag">Château Perché</span>
+            <span class="festival-tag">Fëy Art Festival</span>
+            <span class="festival-tag">2030 Festival</span>
+          </div>
+        </div>
+
+        <!-- Photo principale -->
+        <div class="photo-cadre">
+          <img src="images/lvx1-1.jpg" alt="LVX-1 — installation interactive IA" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Deuxième photo pleine largeur -->
+      <div class="photo-cadre" style="position:relative; z-index:1;">
+        <img src="images/lvx1-2.jpg" alt="LVX-1 — danseuse devant la projection" loading="lazy" />
+      </div>
+
+      <!-- Specs techniques -->
+      <div class="projet-specs">
+        <div class="spec">
+          <div class="spec-label">Technologie</div>
+          <div class="spec-valeur">IA générative <span class="accent">temps réel</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Interaction</div>
+          <div class="spec-valeur">Analyse <span class="accent">expressions faciales</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Format</div>
+          <div class="spec-valeur">Écran + <span class="accent">projection</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PROJET 2 — CARBON OFFSET                  -->
+    <!-- ══════════════════════════════════════════ -->
+    <article class="projet-bloc" id="carbon">
+      <div class="projet-num-bg">02</div>
+
+      <div class="projet-entete">
+        <!-- Photo principale à gauche -->
+        <div class="photo-cadre">
+          <img src="images/carbon-2.jpg" alt="Carbon Offset — écran holographique en forêt" loading="lazy" />
+        </div>
+
+        <!-- Texte à droite -->
+        <div>
+          <div class="projet-meta">
+            <span class="projet-tag">Installation participative</span>
+          </div>
+          <h2 class="projet-titre">
+            Carbon
+            <span class="contour">Offset</span>
+          </h2>
+          <div class="projet-sous-titre">par LB² — @lb__square</div>
+
+          <p class="projet-desc" style="margin-top:1.8rem;">
+            Installation participative où les spectateurs dépensent de l'énergie physique pour planter des arbres virtuels uniques, générés en temps réel. Chaque arbre s'ajoute à une forêt virtuelle collective, projetée sur un écran holographique de 5&nbsp;m × 3&nbsp;m.
+          </p>
+          <p class="projet-desc">
+            Conçue avec un moteur de jeu vidéo et une Kinect, cette œuvre ne peut être installée qu'en forêt, entre deux arbres réels — le contexte naturel est une condition de l'œuvre elle-même.
+          </p>
+
+          <div class="projet-festivals">
+            <span class="festival-tag">Château Perché</span>
+            <span class="festival-tag">Fëy Art Festival</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grille 2 photos -->
+      <div class="photos-grille-2">
+        <div class="photo-cadre">
+          <img src="images/carbon-1.jpg" alt="Carbon Offset — spectateurs de dos" loading="lazy" />
+        </div>
+        <div class="photo-cadre">
+          <img src="images/carbon-3.jpg" alt="Carbon Offset — arbre planté" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Specs techniques -->
+      <div class="projet-specs">
+        <div class="spec">
+          <div class="spec-label">Technologie</div>
+          <div class="spec-valeur">Kinect + <span class="accent">moteur jeu vidéo</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Écran</div>
+          <div class="spec-valeur">Holographique <span class="accent">5 m × 3 m</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Contrainte</div>
+          <div class="spec-valeur">Installation <span class="accent">en forêt uniquement</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PROJET 3 — FLEURS TIMIDES                 -->
+    <!-- ══════════════════════════════════════════ -->
+    <article class="projet-bloc" id="fleurs">
+      <div class="projet-num-bg">03</div>
+
+      <div class="projet-entete">
+        <!-- Texte -->
+        <div>
+          <div class="projet-meta">
+            <span class="projet-tag">Installation robotique — UV</span>
+          </div>
+          <h2 class="projet-titre">
+            Fleurs
+            <span class="contour">Timides</span>
+          </h2>
+          <div class="projet-sous-titre">par LB² — @lb__square</div>
+
+          <p class="projet-desc" style="margin-top:1.8rem;">
+            Nos Fleurs Timides sont des robots conçus par LB². À l'approche des visiteurs, elles se ferment rapidement avant de redéployer leurs majestueux pétales avec élégance. La nuit, elles réagissent à la lumière UV pour offrir une expérience mystique.
+          </p>
+          <p class="projet-desc">
+            Nous en avons construit une douzaine, ce qui nous permet d'installer un véritable jardin robotique — chaque fleur unique, chaque interaction différente.
+          </p>
+
+          <div class="projet-festivals">
+            <span class="festival-tag">Château Perché</span>
+            <span class="festival-tag">Groove Your Ass</span>
+          </div>
+        </div>
+
+        <!-- Photo principale -->
+        <div class="photo-cadre">
+          <img src="images/fleurs-3.jpg" alt="Fleurs Timides — gros plan pétales rouges" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Grille 3 photos -->
+      <div class="photos-grille-3">
+        <div class="photo-cadre">
+          <img src="images/fleurs-1.jpg" alt="Fleurs Timides — jardin UV nuit" loading="lazy" />
+        </div>
+        <div class="photo-cadre">
+          <img src="images/fleurs-2.jpg" alt="Fleurs Timides — deux fleurs nuit" loading="lazy" />
+        </div>
+        <div class="photo-cadre">
+          <img src="images/fleurs-4.jpg" alt="Fleurs Timides — grande fleur orange jour" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Specs techniques -->
+      <div class="projet-specs">
+        <div class="spec">
+          <div class="spec-label">Nombre</div>
+          <div class="spec-valeur"><span class="accent">12 fleurs</span> robotisées</div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Interaction</div>
+          <div class="spec-valeur">Détection <span class="accent">de présence</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Ambiance nuit</div>
+          <div class="spec-valeur">Réaction <span class="accent">lumière UV</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─── CONTACT STRIP ─── -->
+    <div class="contact-strip">
+      <div>
+        <div class="contact-pre">Vous voulez accueillir une installation ?</div>
+        <div class="contact-titre">Rendons votre lieu magique.</div>
+      </div>
+      <a href="contact.html" class="btn-principal">Nous contacter</a>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+      <div class="footer-infos">
+        <a href="mailto:asso.cypher@gmail.com">asso.cypher@gmail.com</a>
+        <a href="tel:+33769727726">+33 7 69 72 77 26 — Lisa Blondel</a>
+        <a href="https://instagram.com/lisa__blondel" target="_blank">@lisa__blondel — @lb__square</a>
+      </div>
+      <div class="footer-logo">Cypher</div>
+      <div class="footer-copy">© Cypher 2025<br>Association loi 1901</div>
+    </footer>
+
+  </div><!-- .page -->
+  <script src="main.js"></script>
+</body>
+</html>

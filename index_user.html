@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cypher — Art Immersif & Scénographie</title>
+  <meta name="description" content="Cypher est un collectif d'artistes qui produit et diffuse des expériences artistiques immersives et pluridisciplinaires — installations interactives, scénographies de festival, spectacles." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Curseur personnalisé -->
+  <div class="curseur" id="curseur"></div>
+  <div class="curseur-anneau" id="curseur-anneau"></div>
+
+  <!-- Canvas d'ambiance -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="grain"></div>
+
+  <div class="page">
+
+    <!-- ─── NAVIGATION ─── -->
+    <nav id="nav">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mot">Cypher</span>
+        <span class="nav-logo-sous">Art & Scénographie</span>
+      </a>
+      <ul class="nav-liens">
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="scenographie.html">Scénographie</a></li>
+        <li><a href="spectacles.html">Spectacles</a></li>
+      </ul>
+      <a href="contact.html" class="nav-contact-btn">Contact</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Drawer mobile -->
+    <div class="nav-drawer" id="drawer">
+      <a href="projets.html">Projets</a>
+      <a href="scenographie.html">Scénographie</a>
+      <a href="spectacles.html">Spectacles</a>
+      <a href="contact.html" class="drawer-contact">Contact</a>
+    </div>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+      <div class="hero-voile"></div>
+      <div class="hero-contenu">
+        <div class="hero-label">
+          <div class="hero-label-trait"></div>
+          <span class="hero-label-texte">Association loi 1901 — Fondée par des artistes</span>
+        </div>
+
+        <h1 class="hero-h1">
+          <span class="ligne-pleine">Art immersif</span>
+          <span class="ligne-contour">&amp; expériences</span>
+          <span class="ligne-mixte"><span class="mot-cyan">sensorielles</span></span>
+        </h1>
+
+        <div class="hero-bas">
+          <p class="hero-desc">
+            Nous sommes un collectif d'artistes, technicien·nes et créatif·ves qui produisons et diffusons des expériences pluridisciplinaires et inoubliables — pour festivals, salles de spectacle et lieux d'art.
+          </p>
+          <div class="hero-cta">
+            <a href="projets.html" class="btn-principal">Découvrir nos projets</a>
+            <a href="contact.html" class="btn-secondaire">Nous contacter →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-hint">
+        <div class="scroll-hint-ligne"></div>
+        Défiler
+      </div>
+    </section>
+
+    <!-- ─── NOS PROJETS ─── -->
+    <section>
+      <div class="section-entete">
+        <h2 class="section-titre">
+          Nos<br><span class="contour">projets</span>
+        </h2>
+        <a href="projets.html" class="lien-tout">Tous les projets →</a>
+      </div>
+
+      <div class="projets-grille">
+
+        <!-- LVX-1 — grande carte -->
+        <a href="projets.html#lvx1" class="carte-projet grande carte-lvx" data-observe>
+          <div class="carte-fleche">↗</div>
+          <div class="carte-contenu">
+            <div class="carte-categorie">Installation interactive — IA temps réel</div>
+            <h3 class="carte-titre">LVX-1</h3>
+            <p class="carte-desc">
+              Filmée en temps réel, transformée par intelligence artificielle. L'œuvre détecte vos émotions et génère des visions psychédéliques uniques en réponse. Présentée à Château Perché, Fëy Art Festival, 2030 Festival.
+            </p>
+          </div>
+        </a>
+
+        <!-- Carbon Offset -->
+        <a href="projets.html#carbon" class="carte-projet carte-carbon" data-observe>
+          <div class="carte-fleche">↗</div>
+          <div class="carte-contenu">
+            <div class="carte-categorie">Installation interactive</div>
+            <h3 class="carte-titre">Carbon<br>Offset</h3>
+            <p class="carte-desc">Plantez des arbres virtuels par l'effort physique. Forêt collective projetée sur écran holographique 5×3m.</p>
+          </div>
+        </a>
+
+        <!-- Fleurs Timides -->
+        <a href="projets.html#fleurs" class="carte-projet carte-chateau" data-observe>
+          <div class="carte-fleche">↗</div>
+          <div class="carte-contenu">
+            <div class="carte-categorie">Installation interactive — UV & robotique</div>
+            <h3 class="carte-titre">Fleurs<br>Timides</h3>
+            <p class="carte-desc">Jardin robotique de 12 fleurs qui se ferment à votre approche. La nuit, elles s'illuminent sous UV.</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ─── SCÉNOGRAPHIE ─── -->
+    <section>
+      <div class="section-entete">
+        <h2 class="section-titre">
+          Scéno<span class="contour">graphie</span>
+        </h2>
+        <a href="scenographie.html" class="lien-tout">Tout voir →</a>
+      </div>
+
+      <div class="scenographie-grille">
+
+        <a href="scenographie.html#chateau" class="carte-sceno" data-observe>
+          <div class="carte-sceno-bg" style="background-image: url('images/chateau-perche-hero.jpg'); background-position: center 40%;"></div>
+          <div class="carte-sceno-voile"></div>
+          <div class="sceno-num">01</div>
+          <h3 class="sceno-titre">Château Perché</h3>
+          <p class="sceno-desc">Allée immersive de 100 mètres — mapping holographique sur toiles, lasers, 5 vidéoprojecteurs NDI synchronisés, mise en lumière architecturale de la muraille.</p>
+        </a>
+
+        <a href="scenographie.html#gya" class="carte-sceno" data-observe>
+          <div class="carte-sceno-bg" style="background-image: url('images/fleurs-timides-hero.jpg');"></div>
+          <div class="carte-sceno-voile"></div>
+          <div class="sceno-num">02</div>
+          <h3 class="sceno-titre">Groove Your Ass</h3>
+          <p class="sceno-desc">Co-création de "Barricade" — machine à fumée, jeux de lumière, laser DMX en surplomb. Mise en espace de LVX-1, Fleurs Timides, projections vidéo au sol.</p>
+        </a>
+
+        <a href="scenographie.html#cbb" class="carte-sceno" data-observe>
+          <div class="carte-sceno-bg" style="background-image: url('images/carbon-offset-hero.jpg');"></div>
+          <div class="carte-sceno-voile"></div>
+          <div class="sceno-num">03</div>
+          <h3 class="sceno-titre">Camion Bip Bip</h3>
+          <p class="sceno-desc">Scénographie de scène pour WART Music aux Transmusicales 2025 — pots d'échappements factices reliés à un circuit de fumée, phares et rampe DMX.</p>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ─── MANIFESTE ─── -->
+    <div class="manifeste">
+      <div class="manifeste-orbe"></div>
+      <blockquote class="manifeste-citation">
+        Nous rassemblons des artistes, des technicien·nes et des <span class="mot-highlight">bénévoles motivé·es</span> pour créer des expériences qui débordent <span class="mot-highlight">les frontières</span> entre technologie et nature.
+      </blockquote>
+      <p class="manifeste-sous">
+        Notre utilisation de l'intelligence artificielle se fait au maximum en local, avec des modèles open source sur nos propres machines. Nous recyclons et réutilisons nos matériaux de scénographie.
+    </div>
+
+    <!-- ─── CONTACT STRIP ─── -->
+    <div class="contact-strip">
+      <div>
+        <div class="contact-pre">Organisateur·trice de festival ?</div>
+        <div class="contact-titre">Rendons votre espace magique.</div>
+      </div>
+      <a href="contact.html" class="btn-principal">Parlons de votre projet</a>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+      <div class="footer-infos">
+        <a href="mailto:asso.cypher@gmail.com">asso.cypher@gmail.com</a>
+        <a href="https://instagram.com/lisa__blondel" target="_blank">@lisa__blondel — @lb__square</a>
+      </div>
+      <div class="footer-logo">Cypher</div>
+      <div class="footer-copy">© Cypher 2025<br>Association loi 1901</div>
+    </footer>
+
+  </div><!-- .page -->
+
+  <script>
+    /* ─── HAMBURGER MENU ─── */
+    const hamburger = document.getElementById('hamburger');
+    const drawer    = document.getElementById('drawer');
+
+    hamburger.addEventListener('click', () => {
+      const ouvert = hamburger.classList.toggle('ouvert');
+      drawer.classList.toggle('ouvert', ouvert);
+      document.body.style.overflow = ouvert ? 'hidden' : '';
+    });
+
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('ouvert');
+        drawer.classList.remove('ouvert');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ─── CURSEUR ─── */
+    const cur = document.getElementById('curseur');
+    const ann = document.getElementById('curseur-anneau');
+    let mx = 0, my = 0, ax = 0, ay = 0;
+
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    function animCur() {
+      ax += (mx - ax) * 0.12;
+      ay += (my - ay) * 0.12;
+      cur.style.left = mx + 'px';
+      cur.style.top  = my + 'px';
+      ann.style.left = ax + 'px';
+      ann.style.top  = ay + 'px';
+      requestAnimationFrame(animCur);
+    }
+    animCur();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cur.style.transform = 'translate(-50%,-50%) scale(2.2)';
+        ann.style.width = '50px';
+        ann.style.height = '50px';
+        ann.style.borderColor = 'rgba(0,200,255,0.6)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cur.style.transform = 'translate(-50%,-50%) scale(1)';
+        ann.style.width = '32px';
+        ann.style.height = '32px';
+        ann.style.borderColor = 'rgba(0,200,255,0.4)';
+      });
+    });
+
+    /* ─── NAV SCROLL ─── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ─── INTERSECTION OBSERVER (apparitions) ─── */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('[data-observe]').forEach(el => obs.observe(el));
+
+    /* ─── CANVAS HOLOGRAPHIQUE ─── */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx    = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    /* Faisceaux */
+    const FAISCEAUX = [
+      { ox: 0.12, oy: 0,    angle: 78,  col: '0,200,255',   w: 1.2, spd: 0.00007 },
+      { ox: 0.78, oy: 0,    angle: 101, col: '0,200,255',   w: 0.9, spd: 0.00011 },
+      { ox: 1,    oy: 0.45, angle: 162, col: '100,180,255', w: 0.7, spd: 0.00009 },
+      { ox: 0.5,  oy: 0,    angle: 85,  col: '180,230,255', w: 0.5, spd: 0.00014 },
+    ];
+
+    /* Bulles */
+    const BULLES = Array.from({ length: 18 }, (_, i) => ({
+      x:     0.1 + Math.random() * 0.8,
+      phase: Math.random() * Math.PI * 2,
+      r:     1.5 + Math.random() * 3,
+      spd:   0.00025 + Math.random() * 0.0003,
+    }));
+
+    /* Fumée */
+    const FUMEES = [
+      { x: 0.18, y: 0.65, r: 180, phase: 0    },
+      { x: 0.55, y: 0.5,  r: 220, phase: 1.8  },
+      { x: 0.88, y: 0.75, r: 140, phase: 3.2  },
+    ];
+
+    let t = 0;
+
+    function draw(ts) {
+      t = ts;
+      const W = canvas.width, H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      /* Fumée douce */
+      FUMEES.forEach(f => {
+        const drift = Math.sin(t * 0.00028 + f.phase) * 35;
+        const cx    = f.x * W + drift;
+        const cy    = f.y * H;
+        const r     = f.r + Math.sin(t * 0.00022 + f.phase) * 25;
+        const grad  = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        grad.addColorStop(0, 'rgba(180,220,255,0.045)');
+        grad.addColorStop(1, 'rgba(180,220,255,0)');
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      });
+
+      /* Orbe nacré principal */
+      const ox = W * 0.72 + Math.sin(t * 0.00035) * 40;
+      const oy = H * 0.28 + Math.cos(t * 0.00028) * 25;
+      const og = ctx.createRadialGradient(ox, oy, 0, ox, oy, 260);
+      og.addColorStop(0,   'rgba(0,200,255,0.1)');
+      og.addColorStop(0.5, 'rgba(0,180,255,0.04)');
+      og.addColorStop(1,   'rgba(0,150,255,0)');
+      ctx.fillStyle = og;
+      ctx.fillRect(0, 0, W, H);
+
+      /* Faisceaux holographiques */
+      FAISCEAUX.forEach((f, i) => {
+        const wobble = Math.sin(t * f.spd * 70000 + i * 1.7) * 5;
+        const ang    = (f.angle + wobble) * Math.PI / 180;
+        const x0     = f.ox * W;
+        const y0     = f.oy * H;
+        const len    = Math.max(W, H) * 2;
+        const x1     = x0 + Math.cos(ang) * len;
+        const y1     = y0 + Math.sin(ang) * len;
+        const grad   = ctx.createLinearGradient(x0, y0, x0 + (x1-x0)*0.35, y0 + (y1-y0)*0.35);
+        grad.addColorStop(0,   `rgba(${f.col},0.18)`);
+        grad.addColorStop(0.4, `rgba(${f.col},0.055)`);
+        grad.addColorStop(1,   `rgba(${f.col},0)`);
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x1, y1);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth   = f.w;
+        ctx.stroke();
+      });
+
+      /* Bulles */
+      BULLES.forEach(b => {
+        const elapsed = ((t * b.spd + b.phase) % 1 + 1) % 1;
+        const y       = (1.05 - elapsed * 1.15) * H;
+        if (y < -20) return;
+        const x     = b.x * W + Math.sin(elapsed * 9 + b.phase) * 22;
+        const alpha = (1 - elapsed) * 0.38;
+        ctx.beginPath();
+        ctx.arc(x, y, b.r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0,210,255,${alpha})`;
+        ctx.lineWidth   = 0.6;
+        ctx.stroke();
+        const shine = ctx.createRadialGradient(x - b.r*0.3, y - b.r*0.3, 0, x, y, b.r);
+        shine.addColorStop(0, `rgba(220,240,255,${alpha * 0.5})`);
+        shine.addColorStop(1, 'rgba(220,240,255,0)');
+        ctx.fillStyle = shine;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+  </script>
+</body>
+</html>

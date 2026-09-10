@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spectacles — Cypher Art & Scénographie</title>
+  <meta name="description" content="Gustave — spectacle musical et visuel autour de l'univers de Courbet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+  :root{--violet:#ffe033;--cyan:#ffb700;--bordure:rgba(255,224,51,0.16);--texte:rgba(255,240,180,0.70);}
+  .orbe-1{background:radial-gradient(circle,rgba(255,200,0,0.18),transparent 70%);}
+  .orbe-2{background:radial-gradient(circle,rgba(255,140,0,0.12),transparent 70%);}
+  .orbe-3{background:radial-gradient(circle,rgba(200,140,0,0.1),transparent 70%);}
+  .nav-logo-mot{color:#ffe033;}
+  .nav-logo-sous{color:rgba(255,224,51,0.4);}
+  .nav-liens a:hover,.nav-liens a.active{color:#ffe033;}
+  .nav-liens a::after{background:#ffe033;}
+  .nav-contact{color:#ffe033;border-color:rgba(255,224,51,0.3);}
+  .nav-hamburger span{background:#ffe033;}
+  .nav-drawer a:hover,.nav-drawer a.active{color:#ffe033;}
+  /* Hero splitscreen */
+  .hero-spectacle{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+  .hero-texte{display:flex;flex-direction:column;justify-content:flex-end;padding:0 3.5rem 5rem;position:relative;z-index:2;}
+  .hero-image{position:relative;overflow:hidden;}
+  .hero-image img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.75);transition:transform 8s ease;}
+  .hero-image::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(8,7,0,1) 0%,rgba(8,7,0,0.55) 30%,rgba(8,7,0,0.05) 100%);z-index:1;}
+  .hero-label{display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem;opacity:0;animation:up 0.7s 0.15s forwards;}
+  .hero-label-trait{width:40px;height:1px;background:#ffe033;}
+  .hero-label-texte{font-size:0.62rem;letter-spacing:0.45em;text-transform:uppercase;color:#ffe033;}
+  .hero-h1{font-size:clamp(1.4rem,7vw,8rem);letter-spacing:-0.03em;}
+  .hero-h1 .plein{color:#fff8d0;}
+  .hero-h1 .contour{-webkit-text-stroke-color:rgba(255,224,51,0.5);}
+  .hero-h1 .accent{color:#ffe033;}
+  .btn-principal{border-color:#ffe033;color:#ffe033;}
+  .btn-principal:hover{background:rgba(255,224,51,0.07);}
+  .bande-infos{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,224,51,0.16);border-bottom:1px solid rgba(255,224,51,0.16);}
+  .bande-info{padding:1.8rem 2rem;border-right:1px solid rgba(255,224,51,0.16);}
+  .bande-info:last-child{border-right:none;}
+  .bi-label{font-size:0.56rem;letter-spacing:0.36em;text-transform:uppercase;color:rgba(255,240,180,0.28);margin-bottom:0.4rem;}
+  .bi-valeur{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#fff8d0;line-height:1.2;}
+  .bi-valeur .accent{color:#ffe033;}
+  .section-concept{padding:6rem 3.5rem;display:grid;grid-template-columns:1fr 1.2fr;gap:6rem;align-items:center;border-bottom:1px solid rgba(255,224,51,0.16);}
+  .concept-titre-bloc{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,4vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95;margin-bottom:2.2rem;word-break:keep-all;hyphens:none;}
+  .concept-titre-bloc .contour{color:transparent;-webkit-text-stroke:1px rgba(255,224,51,0.4);display:block;}
+  .concept-desc{font-size:0.92rem;line-height:1.88;color:rgba(255,240,180,0.7);margin-bottom:1.2rem;}
+  .concept-citation{margin-top:2rem;padding:1.5rem 1.8rem;border-left:2px solid rgba(255,224,51,0.4);background:rgba(255,224,51,0.03);}
+  .concept-citation p{font-family:'Syne',sans-serif;font-size:0.98rem;font-weight:700;color:#fff8d0;line-height:1.5;text-transform:uppercase;letter-spacing:0.02em;}
+  .concept-citation span{display:block;font-size:0.66rem;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,240,180,0.32);margin-top:0.7rem;}
+  .concept-photos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:8px;}
+  .concept-photo{overflow:hidden;border:1px solid rgba(255,224,51,0.16);}
+  .concept-photo.large{grid-column:span 2;}
+  .section-technique{padding:6rem 3.5rem;border-bottom:1px solid rgba(255,224,51,0.16);}
+  .section-titre-jaune{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,4vw,3rem);font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;line-height:1;margin-bottom:3rem;word-break:keep-all;hyphens:none;}
+  .section-titre-jaune .contour{color:transparent;-webkit-text-stroke:1px rgba(255,224,51,0.35);}
+  .technique-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,224,51,0.16);}
+  .technique-carte{background:#080700;padding:2.2rem 1.8rem;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.6s,transform 0.6s;}
+  .technique-carte.visible{opacity:1;transform:none;}
+  .technique-carte:nth-child(2){transition-delay:0.1s;}
+  .technique-carte:nth-child(3){transition-delay:0.2s;}
+  .technique-carte::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,#ffe033,transparent);transform:scaleX(0);transition:transform 0.4s;transform-origin:left;}
+  .technique-carte:hover::before{transform:scaleX(1);}
+  .tech-icone{font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:#ffe033;margin-bottom:1rem;display:block;}
+  .tech-titre{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#fff8d0;margin-bottom:0.9rem;line-height:1.1;}
+  .tech-desc{font-size:0.8rem;line-height:1.72;color:rgba(255,240,180,0.65);}
+  .section-galerie{border-bottom:1px solid rgba(255,224,51,0.16);}
+  .galerie-titre{padding:3.5rem 3.5rem 2.5rem;font-size:0.62rem;letter-spacing:0.42em;text-transform:uppercase;color:rgba(255,240,180,0.28);}
+  .galerie-grille{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4px;}
+  .galerie-photo img{height:320px;}
+  .contact-strip{border-color:rgba(255,224,51,0.16);background:rgba(255,224,51,0.03);}
+  .footer-logo{color:rgba(255,224,51,0.3);}
+  .footer-infos a:hover{color:#ffe033;}
+  @media(max-width:1024px){
+    .hero-spectacle{grid-template-columns:1fr 1fr;}
+    .bande-infos{grid-template-columns:1fr 1fr;}
+    .bande-info:nth-child(2){border-right:none;}
+    .bande-info:nth-child(3){border-top:1px solid rgba(255,224,51,0.16);}
+    .bande-info:nth-child(4){border-top:1px solid rgba(255,224,51,0.16);border-right:none;}
+    .section-concept{padding:4.5rem 2.2rem;gap:3.5rem;}
+    .section-technique,.section-galerie{padding-left:2.2rem;padding-right:2.2rem;}
+    .galerie-titre{padding-left:2.2rem;}
+  }
+  @media(max-width:768px){
+    .hero-spectacle{grid-template-columns:1fr;}
+    .hero-image{position:absolute;inset:0;z-index:0;}
+    .hero-image::before{background:linear-gradient(to bottom,rgba(8,7,0,0.7) 0%,rgba(8,7,0,0.3) 40%,rgba(8,7,0,0.88) 80%,rgba(8,7,0,0.98) 100%);}
+    .hero-texte{min-height:100svh;justify-content:flex-end;padding:0 1.4rem 4rem;position:relative;}
+    .bande-infos{grid-template-columns:1fr 1fr;}
+    .section-concept{grid-template-columns:1fr;gap:2.5rem;padding:3.5rem 1.4rem;}
+    .technique-grille{grid-template-columns:1fr;}
+    .galerie-grille{grid-template-columns:1fr;}
+    .section-technique{padding:3.5rem 1.4rem;}
+    .galerie-titre{padding:2.5rem 1.4rem 1.5rem;}
+  }
+</style>
+</head>
+<body>
+  <div class="orbe orbe-1" aria-hidden="true"></div>
+  <div class="orbe orbe-2" aria-hidden="true"></div>
+  <div class="orbe orbe-3" aria-hidden="true"></div>
+  <div class="page">
+  <nav id="nav">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mot">Cypher</span>
+        <span class="nav-logo-sous">Art & Scénographie</span>
+      </a>
+      <ul class="nav-liens"><li><a href="projets.html">Installations</a></li>
+        <li><a href="scenographie.html">Scénographie</a></li>
+        <li><a href="spectacles.html" class="active">Spectacles</a></li></ul>
+      <a href="contact.html" class="nav-contact">Contact</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="nav-drawer" id="drawer">
+      <a href="projets.html">Installations</a>
+      <a href="scenographie.html">Scénographie</a>
+      <a href="spectacles.html" class="active">Spectacles</a>
+      <a href="contact.html" class="drawer-contact">Contact</a>
+    </div>
+<!-- ─── NAVIGATION ─── -->
+    
+
+    
+
+    <!-- ─── HERO SPLITSCREEN ─── -->
+    <div class="hero-spectacle">
+      <div class="hero-texte">
+        <div class="hero-label">
+          <div class="hero-label-trait"></div>
+          <span class="hero-label-texte">Spectacle vivant</span>
+        </div>
+        <h1 class="hero-h1">
+          <span class="ligne-pleine">Gus</span>
+          <span class="ligne-contour">tave</span>
+          <span class="ligne-or">—</span>
+        </h1>
+        <p class="hero-desc">
+          Un spectacle musical et visuel qui plonge le public dans un dialogue artistique entre peinture animée et musique — inspiré de l'univers de Gustave Courbet.
+        </p>
+        <div class="hero-ctas">
+          <a href="contact.html" class="btn-principal">Programmer Gustave</a>
+          <a href="#concept" class="btn-ghost-lien">En savoir plus ↓</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="images/gustave-main.jpg" alt="Gustave — projection scénique" loading="eager" />
+      </div>
+    </div>
+
+    <!-- ─── BANDE INFOS ─── -->
+    <div class="bande-infos apparait">
+      <div class="bande-info">
+        <div class="bi-label">Format</div>
+        <div class="bi-valeur">Concert <span class="accent">performance</span></div>
+      </div>
+      <div class="bande-info">
+        <div class="bi-label">Plateau</div>
+        <div class="bi-valeur"><span class="accent">4</span> artistes</div>
+      </div>
+      <div class="bande-info">
+        <div class="bi-label">Durée</div>
+        <div class="bi-valeur"><span class="accent">55</span> minutes</div>
+      </div>
+      <div class="bande-info">
+        <div class="bi-label">Jauge</div>
+        <div class="bi-valeur">Salle de <span class="accent">50 à 1000</span></div>
+      </div>
+    </div>
+
+    <!-- ─── CONCEPT ─── -->
+    <section class="section-concept" id="concept">
+
+      <div class="apparait">
+        <h2 class="concept-titre-bloc" class="concept-titre-bloc" style="margin-bottom:2.5rem;">
+          Peinture<br>
+          <span style="color:transparent;-webkit-text-stroke:1px rgba(255,224,51,0.4);">&amp;</span><br>
+          musique
+        </h2>
+
+        <p class="concept-desc">
+          Gustave est un spectacle musical et visuel qui plonge le public dans un dialogue artistique entre peinture animée et musique. Inspiré par l'œuvre du célèbre peintre Gustave Courbet, ce projet est né de la rencontre entre trois musiciens et un désir de rendre hommage à l'intensité émotionnelle de ses tableaux.
+        </p>
+
+        <p class="concept-desc">
+          En collaboration avec Lisa Blondel, artiste plasticienne et scénographe spécialisée dans l'art immersif, Gustave mêle contemplation et musicalité pour embarquer le spectateur au cœur de l'univers visuel de Courbet.
+        </p>
+
+        <!-- Musiciens -->
+        <div style="margin-top:2rem;border-top:1px solid var(--bordure);">
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:baseline;gap:1.2rem;padding:0.9rem 0;border-bottom:1px solid rgba(255,224,51,0.08);">
+              <span style="font-size:0.58rem;color:var(--jaune);text-shadow:0 0 6px var(--jaune);width:16px;flex-shrink:0;">♩</span>
+              <span style="font-size:0.82rem;color:var(--texte);line-height:1.5;"><strong style="color:var(--blanc);font-weight:400;">Benoit Zollet</strong> — Batterie</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:1.2rem;padding:0.9rem 0;border-bottom:1px solid rgba(255,224,51,0.08);">
+              <span style="font-size:0.58rem;color:var(--jaune);text-shadow:0 0 6px var(--jaune);width:16px;flex-shrink:0;">♩</span>
+              <span style="font-size:0.82rem;color:var(--texte);line-height:1.5;"><strong style="color:var(--blanc);font-weight:400;">Erwan Moreau</strong> — Basse</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:1.2rem;padding:0.9rem 0;border-bottom:1px solid rgba(255,224,51,0.08);">
+              <span style="font-size:0.58rem;color:var(--jaune);text-shadow:0 0 6px var(--jaune);width:16px;flex-shrink:0;">♩</span>
+              <span style="font-size:0.82rem;color:var(--texte);line-height:1.5;"><strong style="color:var(--blanc);font-weight:400;">Hugo Coste</strong> — Guitare & Synthé</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:1.2rem;padding:0.9rem 0;">
+              <span style="font-size:0.58rem;color:var(--jaune);text-shadow:0 0 6px var(--jaune);width:16px;flex-shrink:0;">◈</span>
+              <span style="font-size:0.82rem;color:var(--texte);line-height:1.5;"><strong style="color:var(--blanc);font-weight:400;">Lisa Blondel</strong> — Scénographie & art immersif</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-citation" style="margin-top:2.5rem;">
+          <p>"La peinture est un art essentiellement concret et ne peut consister que dans la représentation des choses réelles et existantes."</p>
+          <span>— Gustave Courbet, peintre réaliste (1819–1877)</span>
+        </div>
+      </div>
+
+      <!-- Grille photos -->
+      <div class="concept-photos apparait delai-1">
+        <div class="concept-photo large">
+          <img src="images/gustave-main.jpg" alt="Gustave — groupe sur scène" loading="lazy" />
+        </div>
+        <div class="concept-photo">
+          <img src="images/gustave-1.jpg" alt="Gustave — visage géant projeté" loading="lazy" />
+        </div>
+        <div class="concept-photo">
+          <img src="images/gustave-2.jpg" alt="Gustave — trio live avec projections" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TECHNIQUE ─── -->
+    <section class="section-technique">
+      <div class="section-entete-jaune apparait">
+        <h2 class="section-titre-jaune">
+          Dispositif<br>
+          <span class="contour">scénique</span>
+        </h2>
+      </div>
+
+      <div class="technique-grille">
+
+        <div class="technique-carte" data-observe>
+          <span class="tech-icone">◈ Vidéo live</span>
+          <div class="tech-titre">Projection<br>temps réel</div>
+          <p class="tech-desc">
+            Les tableaux de Courbet sont projetés en temps réel sur toiles, déformés et animés en direct par Hugo Coste depuis la scène. La peinture du XIXe siècle entre en résonance avec la musique — tempo, intensité, dynamique — et se transforme sous les yeux du public.
+          </p>
+        </div>
+
+        <div class="technique-carte" data-observe>
+          <span class="tech-icone">◉ Lumière</span>
+          <div class="tech-titre">Éclairage<br>DMX</div>
+          <p class="tech-desc">
+            L'éclairage DMX est synchronisé à la setlist pour accompagner chaque tableau — lumière froide et minérale pour les paysages, chaude et dense pour les portraits. Les contre-jours sculptent les silhouettes des musiciens, les fondant dans les projections.
+          </p>
+        </div>
+
+        <div class="technique-carte" data-observe>
+          <span class="tech-icone">≋ Atmosphère</span>
+          <div class="tech-titre">Fumée<br>& ambiance</div>
+          <p class="tech-desc">
+            Des nappes de fumée basse viennent habiter l'espace entre les musiciens et les projections, créant une profondeur atmosphérique. La lumière se matérialise dans ce voile — les tableaux de Courbet semblent surgir de la brume comme ils surgissent de la mémoire.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── GALERIE ─── -->
+    <section class="section-galerie">
+      <div class="galerie-titre">Captations — Gustave live</div>
+      <div class="galerie-grille apparait">
+        <div class="galerie-photo">
+          <img src="images/gustave-2.jpg" alt="Gustave — trio live" loading="lazy" />
+        </div>
+        <div class="galerie-photo">
+          <img src="images/gustave-1.jpg" alt="Gustave — projection visage géant" loading="lazy" />
+        </div>
+        <div class="galerie-photo">
+          <img src="images/gustave-main.jpg" alt="Gustave — groupe complet" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT STRIP ─── -->
+    <div class="contact-strip">
+      <div>
+        <div class="contact-pre">Vous programmez des spectacles vivants ?</div>
+        <div class="contact-titre">Accueillez Gustave.</div>
+      </div>
+      <a href="contact.html" class="btn-principal">Nous contacter</a>
+    </div>
+
+    <!-- ─── FOOTER ─── */
+    <footer>
+      <div class="footer-infos">
+        <a href="mailto:asso.cypher@gmail.com">asso.cypher@gmail.com</a>
+        <a href="tel:+33769727726">+33 7 69 72 77 26 — Lisa Blondel</a>
+        <a href="https://instagram.com/lisa__blondel" target="_blank">@lisa__blondel — @lb__square</a>
+      </div>
+      <div class="footer-logo">Cypher</div>
+      <div class="footer-copy">© Cypher 2025<br>Association loi 1901</div>
+    </footer>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

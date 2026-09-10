@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scénographie — Cypher Art & Scénographie</title>
+  <meta name="description" content="Scénographies Cypher : Château Perché, Groove Your Ass, Camion Bip Bip." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+  :root { --violet:#c77dff; --cyan:#00c8ff; --bordure:rgba(199,125,255,0.18); --texte:rgba(220,200,255,0.68); }
+  .orbe-1{background:radial-gradient(circle,rgba(199,125,255,0.22),transparent 70%);}
+  .orbe-2{background:radial-gradient(circle,rgba(0,200,255,0.14),transparent 70%);}
+  /* Page hero */
+  .hero-sceno{min-height:58vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3.5rem 4.5rem;border-bottom:1px solid var(--bordure);position:relative;overflow:hidden;}
+  .hero-sceno-photo{position:absolute;inset:0;background-size:cover;background-position:center 40%;opacity:0.28;}
+  .hero-sceno-voile{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(12,12,12,0.5) 0%,rgba(12,12,12,0.15) 35%,rgba(12,12,12,0.8) 75%,rgba(12,12,12,0.98) 100%);z-index:1;}
+  .hero-sceno-contenu{position:relative;z-index:2;}
+  .page-label{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;opacity:0;animation:up 0.7s 0.1s forwards;}
+  .page-label-trait{width:40px;height:1px;background:var(--violet);}
+  .page-label-texte{font-size:0.62rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--violet);}
+  .page-h1{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,8vw,7rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.9;opacity:0;animation:up 0.8s 0.25s forwards;word-break:keep-all;hyphens:none;}
+  .page-h1 .mot-plein{display:block;color:#f0e8ff;}
+  .page-h1 .mot-contour{display:block;color:transparent;-webkit-text-stroke:1.5px rgba(199,125,255,0.5);}
+  .page-sous-titre{margin-top:1.6rem;font-size:0.9rem;line-height:1.85;color:var(--texte);max-width:520px;opacity:0;animation:up 0.8s 0.4s forwards;}
+  /* Onglets */
+  .sceno-nav{padding:0 3.5rem;border-bottom:1px solid var(--bordure);display:flex;overflow-x:auto;}
+  .sceno-tab{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(220,200,255,0.35);padding:1.3rem 1.8rem;border-bottom:2px solid transparent;transition:color 0.3s,border-color 0.3s;display:inline-block;white-space:nowrap;}
+  .sceno-tab:hover,.sceno-tab.actif{color:var(--violet);border-bottom-color:var(--violet);}
+  /* Blocs */
+  .sceno-bloc{padding:5.5rem 3.5rem;border-bottom:1px solid var(--bordure);position:relative;overflow:hidden;}
+  .sceno-num-bg{position:absolute;top:1.5rem;right:2rem;font-family:'Syne',sans-serif;font-size:16rem;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(199,125,255,0.04);line-height:1;pointer-events:none;}
+  .sceno-intro{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:start;margin-bottom:4rem;position:relative;z-index:1;}
+  .sceno-meta{margin-bottom:1.4rem;}
+  .sceno-tag{font-size:0.6rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--violet);display:flex;align-items:center;gap:0.6rem;}
+  .sceno-tag::before{content:'';display:block;width:14px;height:1px;background:var(--violet);}
+  .sceno-annee{font-size:0.56rem;letter-spacing:0.32em;text-transform:uppercase;color:rgba(220,200,255,0.25);display:block;margin-top:0.3rem;}
+  .sceno-titre-page{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,5.5vw,5rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.92;margin-bottom:1.8rem;word-break:keep-all;hyphens:none;}
+  .sceno-titre-page .contour{color:transparent;-webkit-text-stroke:1.5px rgba(199,125,255,0.4);display:block;}
+  .sceno-desc{font-size:0.92rem;line-height:1.88;color:var(--texte);margin-bottom:1.2rem;}
+  .sceno-elements{margin-top:1.8rem;border-top:1px solid var(--bordure);}
+  .sceno-element{display:flex;align-items:baseline;gap:1rem;padding:0.85rem 0;border-bottom:1px solid rgba(199,125,255,0.07);}
+  .el-icone{font-size:0.58rem;color:var(--violet);flex-shrink:0;width:14px;}
+  .el-texte{font-size:0.8rem;color:var(--texte);line-height:1.5;}
+  .el-texte strong{color:#f0e8ff;font-weight:400;}
+  /* Photo principale */
+  .sceno-photo-principale{border:1px solid var(--bordure);overflow:hidden;position:relative;}
+  .sceno-photo-principale img{width:100%;height:480px;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);transition:transform 0.5s,filter 0.5s;}
+  .sceno-photo-principale:hover img{transform:scale(1.03);filter:brightness(0.95) saturate(1.2);}
+  /* Specs */
+  .sceno-specs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bordure);margin-top:3.5rem;position:relative;z-index:1;}
+  .spec{background:#06020f;padding:1.6rem 1.8rem;}
+  .spec-label{font-size:0.56rem;letter-spacing:0.36em;text-transform:uppercase;color:rgba(220,200,255,0.25);margin-bottom:0.5rem;}
+  .spec-valeur{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:#f0e8ff;line-height:1.3;}
+  .spec-valeur .accent{color:var(--violet);}
+  /* Contact footer */
+  .contact-strip{border-color:var(--bordure);background:rgba(199,125,255,0.03);}
+  .btn-principal{border-color:var(--violet);color:var(--violet);}
+  .btn-principal:hover{background:rgba(199,125,255,0.08);}
+  .footer-logo{color:rgba(199,125,255,0.3);}
+  .footer-infos a:hover{color:var(--violet);}
+  @media(max-width:1024px){.sceno-specs{grid-template-columns:1fr 1fr;}}
+  @media(max-width:768px){
+    .sceno-intro{grid-template-columns:1fr;gap:2.5rem;}
+    .sceno-bloc{padding:3.5rem 1.4rem;}
+    .hero-sceno{padding:0 1.4rem 3rem;min-height:50vh;}
+    .sceno-nav{padding:0 1.4rem;}
+    .sceno-num-bg{font-size:5rem;opacity:0.03;}
+    .sceno-photo-principale img{height:300px;}
+    .sceno-specs{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:480px){.sceno-specs{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+  <div class="orbe orbe-1" aria-hidden="true"></div>
+  <div class="orbe orbe-2" aria-hidden="true"></div>
+  <div class="orbe orbe-3" aria-hidden="true"></div>
+  <div class="page">
+  <nav id="nav">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mot">Cypher</span>
+        <span class="nav-logo-sous">Art & Scénographie</span>
+      </a>
+      <ul class="nav-liens"><li><a href="projets.html">Installations</a></li>
+        <li><a href="scenographie.html" class="active">Scénographie</a></li>
+        <li><a href="spectacles.html">Spectacles</a></li></ul>
+      <a href="contact.html" class="nav-contact">Contact</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="nav-drawer" id="drawer">
+      <a href="projets.html">Installations</a>
+      <a href="scenographie.html" class="active">Scénographie</a>
+      <a href="spectacles.html">Spectacles</a>
+      <a href="contact.html" class="drawer-contact">Contact</a>
+    </div>
+<!-- ─── NAVIGATION ─── -->
+    
+
+    
+
+    <!-- ─── HERO ─── -->
+    <div class="hero-sceno">
+      <div class="hero-sceno-photo"></div>
+      <div class="hero-sceno-voile"></div>
+      <div class="hero-sceno-contenu">
+        <div class="page-label">
+          <div class="page-label-trait"></div>
+          <span class="page-label-texte">Festivals & spectacles vivants</span>
+        </div>
+        <h1 class="page-h1">
+          <span class="mot-plein">Scéno</span>
+          <span class="mot-contour">graphie</span>
+        </h1>
+        <p class="page-sous-titre">
+          Nous concevons et déployons des environnements lumineux, sonores et visuels pour festivals, salles de spectacle et scènes — en combinant mapping vidéo, lasers, machines à fumée et installations interactives.
+        </p>
+      </div>
+    </div>
+
+    <!-- ─── ONGLETS ─── -->
+    <div class="sceno-nav">
+      <a href="#chateau"  class="sceno-tab actif">Château Perché</a>
+      <a href="#gya"      class="sceno-tab">Groove Your Ass</a>
+      <a href="#cbb"      class="sceno-tab">Camion Bip Bip</a>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- 01 — CHÂTEAU PERCHÉ                       -->
+    <!-- ══════════════════════════════════════════ -->
+    <article class="sceno-bloc" id="chateau">
+      <div class="sceno-num-bg">01</div>
+
+      <div class="sceno-intro">
+
+        <!-- Texte gauche -->
+        <div>
+          <div class="sceno-meta">
+            <span class="sceno-tag">Festival</span>
+            <span class="sceno-annee">2024 — 2025</span>
+          </div>
+
+          <h2 class="sceno-titre-page">
+            Château<br>
+            <span class="contour">Perché</span>
+          </h2>
+
+          <p class="sceno-desc">
+            Cypher conçoit et déploie chaque année une allée immersive de 100 mètres pour l'une des scènes du festival Château Perché. L'espace est transformé en parcours sensoriel complet — la fumée, le mapping, les lasers et les installations interactives se répondent pour créer une déambulation unique.
+          </p>
+
+          <p class="sceno-desc">
+            Les Fleurs Timides sont installées dans les arbres le long du parcours. Des toiles tendues entre les branches reçoivent des projections synchronisées en NDI. La muraille historique est mise en lumière par des projecteurs DMX.
+          </p>
+
+          <div class="sceno-elements">
+            <div class="sceno-element">
+              <span class="el-icone">◈</span>
+              <span class="el-texte"><strong>5 vidéoprojecteurs NDI</strong> synchronisés — mapping holographique sur toiles tendues</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">⌁</span>
+              <span class="el-texte"><strong>Lasers DMX</strong> — faisceaux en surplomb de l'allée, automatisés sur la musique</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">≋</span>
+              <span class="el-texte"><strong>Machines à fumée</strong> — nappes basses et colonnes en contre-jour laser</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">◉</span>
+              <span class="el-texte"><strong>Fleurs Timides</strong> — jardin robotique UV intégré aux arbres du parcours</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">◈</span>
+              <span class="el-texte"><strong>LVX-1</strong> — installation interactive IA en point focal de l'allée</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">◌</span>
+              <span class="el-texte"><strong>Machine à bulles</strong> — bulles géantes en fin de parcours</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo principale droite -->
+        <div class="sceno-photo-principale apparait">
+          <img src="images/cp-2.jpg" alt="Château Perché — allée immersive nuit bleue" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Grille photos secondaires -->
+      <div class="photos-sceno cols-2 apparait">
+        <div class="photo-sceno">
+          <img src="images/cp-main.jpg" alt="Château Perché — Fleurs Timides et laser" loading="lazy" />
+        </div>
+        <div class="photo-sceno">
+          <img src="images/cp-3.jpg" alt="Château Perché — allée UV" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Photo barricade -->
+      <div class="photos-sceno cols-2 apparait" style="margin-top:10px;position:relative;z-index:1;">
+        <div class="photo-sceno"><img src="images/gya-barricade.jpg" alt="GYA — Barricade fumée et lune" loading="lazy" /></div>
+        <div class="photo-sceno"><img src="images/fleurs-gya.jpg" alt="GYA — Fleurs Timides de jour" loading="lazy" /></div>
+      </div>
+
+      <!-- Specs -->
+      <div class="sceno-specs apparait">
+        <div class="spec">
+          <div class="spec-label">Espace</div>
+          <div class="spec-valeur">Allée de <span class="accent">100 m</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Projections</div>
+          <div class="spec-valeur"><span class="accent">5</span> vidéoprojecteurs NDI</div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Installations</div>
+          <div class="spec-valeur">LVX-1 + <span class="accent">12 Fleurs</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Éditions</div>
+          <div class="spec-valeur"><span class="accent">2024</span> & 2025</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- 02 — GROOVE YOUR ASS                      -->
+    <!-- ══════════════════════════════════════════ -->
+    <article class="sceno-bloc" id="gya">
+      <div class="sceno-num-bg">02</div>
+
+      <div class="sceno-intro">
+
+        <!-- Photo principale gauche -->
+        <div class="sceno-photo-principale apparait">
+          <img src="images/gya-main.jpg" alt="Groove Your Ass — Fleurs Timides de jour" loading="lazy" />
+        </div>
+
+        <!-- Texte droite -->
+        <div>
+          <div class="sceno-meta">
+            <span class="sceno-tag">Festival</span>
+            <span class="sceno-annee">2024</span>
+          </div>
+
+          <h2 class="sceno-titre-page">
+            Groove<br>
+            <span class="contour">Your Ass</span>
+          </h2>
+
+          <p class="sceno-desc">
+            Pour le festival Groove Your Ass, Cypher co-crée "Barricade" — un dispositif scénographique central qui sépare et relie à la fois la scène et le public. La barricade devient une œuvre en elle-même, habitée par la lumière et la fumée.
+          </p>
+
+          <p class="sceno-desc">
+            Les Fleurs Timides sont réparties dans l'espace, réagissant à la présence du public. LVX-1 crée un dialogue entre les corps des festivaliers et les images projetées au sol et sur les façades.
+          </p>
+
+          <div class="sceno-elements">
+            <div class="sceno-element">
+              <span class="el-icone">⌁</span>
+              <span class="el-texte"><strong>Laser DMX</strong> en surplomb de la barricade — automatisé sur le BPM</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">≋</span>
+              <span class="el-texte"><strong>Machine à fumée</strong> intégrée à la Barricade</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">◉</span>
+              <span class="el-texte"><strong>Fleurs Timides</strong> — jardin déployé autour de la scène</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">◈</span>
+              <span class="el-texte"><strong>LVX-1</strong> — projections interactives au sol et sur façade</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specs -->
+      <div class="sceno-specs apparait">
+        <div class="spec">
+          <div class="spec-label">Dispositif central</div>
+          <div class="spec-valeur"><span class="accent">Barricade</span> scénographique</div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Installations</div>
+          <div class="spec-valeur">LVX-1 + <span class="accent">Fleurs Timides</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Effets</div>
+          <div class="spec-valeur">Laser + <span class="accent">fumée DMX</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Format</div>
+          <div class="spec-valeur">Co-création <span class="accent">en résidence</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- 03 — CAMION BIP BIP                       -->
+    <!-- ══════════════════════════════════════════ -->
+    <article class="sceno-bloc" id="cbb">
+      <div class="sceno-num-bg">03</div>
+
+      <div class="sceno-intro">
+
+        <!-- Texte gauche -->
+        <div>
+          <div class="sceno-meta">
+            <span class="sceno-tag">Scène — Spectacle vivant</span>
+            <span class="sceno-annee">Transmusicales de Rennes 2025</span>
+          </div>
+
+          <h2 class="sceno-titre-page">
+            Camion<br>
+            <span class="contour">Bip Bip</span>
+          </h2>
+
+          <p class="sceno-desc">
+            Scénographie de scène pour le groupe Camion Bip Bip (label WART Music), présentée aux Transmusicales de Rennes 2025. L'univers visuel du groupe — camions, routes, pop décalée — est transposé en dispositif scénique immersif.
+          </p>
+
+          <p class="sceno-desc">
+            Des pots d'échappements factices reliés à un circuit de fumée crachent des colonnes de vapeur rythmées sur la musique. Des phares de camion en DMX balayent la salle. L'ensemble crée une scène-véhicule qui embarque le public dans la narration du groupe.
+          </p>
+
+          <div class="sceno-elements">
+            <div class="sceno-element">
+              <span class="el-icone">≋</span>
+              <span class="el-texte"><strong>Circuit de fumée</strong> — pots d'échappement factices déclenchés au tempo</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">◈</span>
+              <span class="el-texte"><strong>Phares DMX</strong> — projecteurs orientables balayant la salle</span>
+            </div>
+            <div class="sceno-element">
+              <span class="el-icone">◈</span>
+              <span class="el-texte"><strong>Rampe DMX</strong> — éclairage de scène synchronisé à la setlist</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo principale droite -->
+        <div class="sceno-photo-principale apparait">
+          <img src="images/cbb-main.jpg" alt="Camion Bip Bip — scène Transmusicales" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Grille 2 photos -->
+      <div class="photos-sceno cols-2 apparait">
+        <div class="photo-sceno">
+          <img src="images/cbb-1.jpg" alt="Camion Bip Bip — scène violet" loading="lazy" />
+        </div>
+        <div class="photo-sceno">
+          <img src="images/cbb-3.jpg" alt="Camion Bip Bip — fumée dorée silhouettes" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Specs -->
+      <div class="sceno-specs apparait">
+        <div class="spec">
+          <div class="spec-label">Événement</div>
+          <div class="spec-valeur"><span class="accent">Transmusicales</span> de Rennes</div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Label</div>
+          <div class="spec-valeur"><span class="accent">WART</span> Music</div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Dispositif</div>
+          <div class="spec-valeur">Scène-<span class="accent">véhicule</span></div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Année</div>
+          <div class="spec-valeur"><span class="accent">2025</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─── CONTACT STRIP ─── -->
+    <div class="contact-strip">
+      <div>
+        <div class="contact-pre">Un festival, une scène, un lieu à transformer ?</div>
+        <div class="contact-titre">Construisons ensemble.</div>
+      </div>
+      <a href="contact.html" class="btn-principal">Nous contacter</a>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+      <div class="footer-infos">
+        <a href="mailto:asso.cypher@gmail.com">asso.cypher@gmail.com</a>
+        <a href="tel:+33769727726">+33 7 69 72 77 26 — Lisa Blondel</a>
+        <a href="https://instagram.com/lisa__blondel" target="_blank">@lisa__blondel — @lb__square</a>
+      </div>
+      <div class="footer-logo">Cypher</div>
+      <div class="footer-copy">© Cypher 2025<br>Association loi 1901</div>
+    </footer>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
