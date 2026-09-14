@@ -9,13 +9,157 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ── Thème cyan holographique (landing) ── */
+    :root {
+      --noir:    #03080f;
+      --cyan:    #00c8ff;
+      --violet:  #00c8ff;
+      --blanc:   #dceeff;
+      --texte:   rgba(200, 230, 255, 0.70);
+      --bordure: rgba(0, 200, 255, 0.18);
+    }
+
+    body { background: var(--noir); }
+
+    /* Orbes cyan */
+    .orbe-1 {
+      background: radial-gradient(circle, rgba(0,200,255,0.18), transparent 70%);
+      width: 600px; height: 600px;
+      top: -150px; right: -100px;
+      animation: drift-1 18s ease-in-out infinite alternate;
+    }
+    .orbe-2 {
+      background: radial-gradient(circle, rgba(0,150,255,0.13), transparent 70%);
+      width: 450px; height: 450px;
+      bottom: 5vh; left: -120px;
+      animation: drift-2 24s ease-in-out infinite alternate;
+    }
+    .orbe-3 {
+      background: radial-gradient(circle, rgba(100,200,255,0.09), transparent 70%);
+      width: 320px; height: 320px;
+      top: 45vh; right: 15vw;
+      animation: drift-3 28s ease-in-out infinite alternate;
+    }
+
+    /* Faisceaux holographiques en CSS */
+    .faisceau {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      top: 0;
+      width: 1px;
+      height: 100vh;
+      transform-origin: top center;
+    }
+    .faisceau-1 {
+      left: 12%;
+      background: linear-gradient(to bottom, rgba(0,200,255,0.22), rgba(0,200,255,0.04) 40%, transparent);
+      transform: rotate(8deg);
+      filter: blur(1.5px);
+      animation: beam-sway-1 16s ease-in-out infinite alternate;
+    }
+    .faisceau-2 {
+      left: 72%;
+      background: linear-gradient(to bottom, rgba(0,180,255,0.16), rgba(0,180,255,0.03) 35%, transparent);
+      transform: rotate(-6deg);
+      filter: blur(2px);
+      animation: beam-sway-2 20s ease-in-out infinite alternate;
+    }
+    .faisceau-3 {
+      left: 48%;
+      background: linear-gradient(to bottom, rgba(180,230,255,0.1), rgba(180,230,255,0.02) 30%, transparent);
+      transform: rotate(3deg);
+      filter: blur(1px);
+      animation: beam-sway-3 26s ease-in-out infinite alternate;
+    }
+
+    @keyframes beam-sway-1 {
+      from { transform: rotate(6deg); opacity: 0.8; }
+      to   { transform: rotate(12deg); opacity: 1; }
+    }
+    @keyframes beam-sway-2 {
+      from { transform: rotate(-8deg); opacity: 0.7; }
+      to   { transform: rotate(-3deg); opacity: 1; }
+    }
+    @keyframes beam-sway-3 {
+      from { transform: rotate(1deg); opacity: 0.5; }
+      to   { transform: rotate(6deg); opacity: 0.9; }
+    }
+
+    /* Lignes scan holographiques sur le hero */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 17px,
+        rgba(0,200,255,0.018) 17px,
+        rgba(0,200,255,0.018) 18px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Overrides couleurs nav et UI */
+    .nav-logo-mot  { color: var(--cyan); text-shadow: 0 0 18px rgba(0,200,255,0.4); }
+    .nav-logo-sous { color: rgba(0,200,255,0.42); }
+    .nav-liens a:hover, .nav-liens a.active { color: var(--cyan); }
+    .nav-liens a::after { background: var(--cyan); }
+    nav.scrolled { border-bottom-color: rgba(0,200,255,0.18); }
+    .nav-contact { color: var(--cyan); border-color: rgba(0,200,255,0.3); }
+    .nav-contact:hover { background: rgba(0,200,255,0.08); }
+    .nav-hamburger span { background: var(--cyan); }
+    .nav-drawer a:hover, .nav-drawer a.active { color: var(--cyan); }
+    .nav-drawer .drawer-contact { color: var(--cyan); border-color: rgba(0,200,255,0.25); }
+
+    .hero-label-trait { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    .hero-label-texte { color: var(--cyan); }
+    .hero-h1 .contour { -webkit-text-stroke-color: rgba(0,200,255,0.55); }
+    .hero-h1 .accent  { color: var(--cyan); text-shadow: 0 0 40px rgba(0,200,255,0.35); }
+
+    .stat-chiffre { color: var(--cyan); text-shadow: 0 0 18px rgba(0,200,255,0.3); }
+
+    .section-titre .contour { -webkit-text-stroke-color: rgba(0,200,255,0.38); }
+
+    .carte-categorie, .carte-categorie::before { color: var(--cyan); background: var(--cyan); box-shadow: none; }
+    .carte-projet:hover { border-color: rgba(0,200,255,0.45); }
+    .carte-projet:hover .carte-fleche { border-color: var(--cyan); color: var(--cyan); }
+
+    .carte-sceno:hover { border-color: rgba(0,200,255,0.35); }
+    .sceno-num { color: rgba(200,230,255,0.18); }
+
+    .manifeste-citation .mot-h { -webkit-text-stroke-color: rgba(0,200,255,0.45); }
+    .manifeste-sous { color: rgba(200,230,255,0.65); }
+
+    .contact-strip { background: rgba(0,200,255,0.02); }
+    .contact-strip::before { background: linear-gradient(135deg, rgba(0,200,255,0.04), transparent 60%); }
+    .btn-principal { border-color: var(--cyan); color: var(--cyan); }
+    .btn-principal:hover { background: rgba(0,200,255,0.07); box-shadow: 0 0 24px rgba(0,200,255,0.15); }
+    .btn-secondaire { color: rgba(200,230,255,0.4); }
+
+    .effets-bande { border-color: rgba(0,200,255,0.18); }
+    .pill-v { border-color: rgba(0,200,255,0.4); color: var(--cyan); }
+    .pill-u { border-color: rgba(100,180,255,0.35); color: rgba(100,200,255,0.8); }
+
+    footer { border-top-color: rgba(0,200,255,0.18); }
+    .footer-logo { color: rgba(0,200,255,0.3); }
+    .footer-infos a:hover { color: var(--cyan); }
+
+    .scroll-hint-ligne { background: linear-gradient(180deg, var(--cyan), transparent); }
+    .lien-tout:hover { color: var(--cyan); }
+  </style>
 </head>
 <body>
 
-  <!-- Orbes ambiance -->
+  <!-- Orbes + faisceaux holographiques CSS -->
   <div class="orbe orbe-1" aria-hidden="true"></div>
   <div class="orbe orbe-2" aria-hidden="true"></div>
   <div class="orbe orbe-3" aria-hidden="true"></div>
+  <div class="faisceau faisceau-1" aria-hidden="true"></div>
+  <div class="faisceau faisceau-2" aria-hidden="true"></div>
+  <div class="faisceau faisceau-3" aria-hidden="true"></div>
 
   <div class="page">
 
@@ -29,7 +173,7 @@
         <li><a href="scenographie.html">Scénographie</a></li>
         <li><a href="spectacles.html">Spectacles</a></li>
       </ul>
-      <a href="contact.html" class="nav-contact">Contact</a>
+      <a href="mailto:asso.cypher@gmail.com" class="nav-contact">Contact</a>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -38,7 +182,7 @@
       <a href="projets.html">Installations</a>
       <a href="scenographie.html">Scénographie</a>
       <a href="spectacles.html">Spectacles</a>
-      <a href="contact.html" class="drawer-contact">Contact</a>
+      <a href="mailto:asso.cypher@gmail.com" class="drawer-contact">Contact</a>
     </div>
 
 <!-- Curseur personnalisé -->
@@ -70,7 +214,7 @@
           </p>
           <div class="hero-cta">
             <a href="projets.html" class="btn-principal">Découvrir nos installations</a>
-            <a href="contact.html" class="btn-secondaire">Nous contacter →</a>
+            <a href="mailto:asso.cypher@gmail.com" class="btn-secondaire">Nous contacter →</a>
           </div>
         </div>
       </div>
@@ -181,7 +325,7 @@
         <div class="contact-pre">Organisateur·trice de festival ?</div>
         <div class="contact-titre">Rendons votre espace magique.</div>
       </div>
-      <a href="contact.html" class="btn-principal">Parlons de votre projet</a>
+      <a href="mailto:asso.cypher@gmail.com" class="btn-principal">Parlons de votre projet</a>
     </div>
 
     <!-- ─── FOOTER ─── -->
